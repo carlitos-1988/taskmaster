@@ -3,4 +3,11 @@
     <string name="product_name">Product Name</string>
     <string name="ProductNameInput">Product Name input</string>
     <string name="ProductNameInput2">Product Name Input</string>
+    <string name="MainActivityMyTasks">My Tasks</string>
+    <string name="MainActivityAddTask">Add Task</string>
+    <string name="MainActivityAllTasks">All Tasks</string>
+    <string name="CreateActivityTaskTile">Add Task</string>
+    <string name="CreateActivityTaskInputHint">My Task</string>
+    <string name="CreateActivityTaskDescriptionLabel">Task Description</string>
+    <string name="AllActivitiesAllTasksTitle" >All Tasks</string>
 </resources>

@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.jco.taskmaster.R;
 
-public class OrderFormActivity extends AppCompatActivity {
+public class CreateTask extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_form);
+        setContentView(R.layout.activity_create_task);
     }
 }

@@ -1,8 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Taskmaster" parent="Theme.Material3.DayNight">
+
+    <style name="Base.Theme.Taskmaster" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:windowBackground">@color/babyBlue</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@string/font_family_medium</item>
+
     </style>
 
     <style name="Theme.Taskmaster" parent="Base.Theme.Taskmaster" />
