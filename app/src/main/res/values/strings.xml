@@ -11,4 +11,7 @@
     <string name="CreateActivityTaskDescriptionLabel">Task Description</string>
     <string name="AllActivitiesAllTasksTitle" >All Tasks</string>
     <string name="CreateTaskActivityButton">Submit Task</string>
+    <string name="AllActivitiesButton">Show Toast</string>
+    <string name="AllTasksButton2">Show Toast 2</string>
+    <string name="AllActivitiesCounter">"Counter: "</string>
 </resources>

@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button addTaskButton = findViewById(R.id.MainActivityAddTask);
 
+        //v lambda is View view same thing
         addTaskButton.setOnClickListener(v -> {
             System.out.println("add task button clicked");
             Intent goToCreateFormIntent = new Intent(MainActivity.this, CreateTask.class);
