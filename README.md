@@ -14,3 +14,4 @@ All Tasks
 The all tasks page should just be an image with a back button; it needs no functionality.
 
 ### Screenshots
+![Home Screen](screenshots/Screenshot 2023-08-14 at 9.19.01 PM.png)
