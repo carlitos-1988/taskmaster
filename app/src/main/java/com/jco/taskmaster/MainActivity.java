@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.jco.taskmaster.activities.AllTasks;
 import com.jco.taskmaster.activities.CreateTask;
+import com.jco.taskmaster.activities.SettingsPage;
+import com.jco.taskmaster.activities.TaskDetailActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +42,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToCreateFormIntent);
         });
 
+        Button viewTaskDetailsTaskButton = findViewById(R.id.AllActivitiesTaskDetailActivities);
 
+        viewTaskDetailsTaskButton.setOnClickListener(v -> {
+            Intent goToTaskDetailsIntent = new Intent(MainActivity.this, TaskDetailActivity.class);
+            startActivity(goToTaskDetailsIntent);
+        });
+
+        ImageButton viewSettingsTaskButton = findViewById(R.id.SetUsernameActivityButton);
+
+        viewSettingsTaskButton.setOnClickListener(v -> {
+            Intent goToViewSettingActivity = new Intent(MainActivity.this, SettingsPage.class);
+            startActivity(goToViewSettingActivity);
+        });
 
 
     }
