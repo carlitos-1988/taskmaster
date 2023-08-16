@@ -10,4 +10,13 @@
     </style>
 
     <style name="Theme.Taskmaster" parent="Base.Theme.Taskmaster" />
+
+    <style name="Theme.Taskmaster.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Taskmaster.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Taskmaster.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
