@@ -45,13 +45,20 @@ public class AllTasks extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_activities);
 
-        Button showToastButton = findViewById(R.id.AllTasksToastButton);
-        showToastButton.setOnClickListener(this);
-
-         //initialize the myCounter variable here if not done it will remain null
         myCounter = findViewById(R.id.AllActivitiesCounter);
 
-        //Long click implementation will not work on onClick void method above different type
+        showToast1Button();
+        showToast2Button();
+    }
+
+
+    //initialize the myCounter variable here if not done it will remain null
+    void showToast1Button(){
+        Button showToastButton = findViewById(R.id.AllTasksToastButton);
+        showToastButton.setOnClickListener(this);
+    }
+    //Long click implementation will not work on onClick void method above different type
+    void showToast2Button(){
         Button showToastButton2 = findViewById(R.id.AllTasksShowToastButton2);
         showToastButton2.setOnLongClickListener(view -> {
             Toast.makeText(this, "Some Long Click", Toast.LENGTH_SHORT).show();
