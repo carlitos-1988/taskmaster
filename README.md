@@ -14,4 +14,25 @@ All Tasks
 The all tasks page should just be an image with a back button; it needs no functionality.
 
 ### Screenshots
-![Home Screen](screenshots/Screenshot 2023-08-14 at 9.19.01 PM.png)
+![HomeScreen](screenshots/Screenshot 2023-08-14 at 9.19.01 PM.png)
+
+
+## ChangeLog
+
+### Lab 27 updates
+
+Implemented the following: 
+
+Task Detail Page
+Create a Task Detail page. It should have a title at the top of the page, and a Lorem Ipsum description.
+
+Settings Page
+Create a Settings page. It should allow users to enter their username and hit save.
+
+Homepage
+The main page should be modified to contain three different buttons with hardcoded task titles. When a user taps one of the titles, it should go to the Task Detail page, and the title at the top of the page should match the task title that was tapped on the previous page.
+
+The homepage should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
+
+![EspressoTest](screenshots/Screenshot 2023-08-16 at 1.26.24 AM.png)
+![HomeScreenLabUpdate27](screenshots/Screenshot 2023-08-16 at 1.35.02 AM.png)
