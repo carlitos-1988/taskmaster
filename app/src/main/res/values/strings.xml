@@ -113,4 +113,7 @@
     <string name="SettingsActivityEnterUsername">Enter Username</string>
     <string name="EnterUserNameSettingsActivity">Enter new username</string>
     <string name="SaveUsernameButton">Set new username\n</string>
+    <string name="UserNameTextView">Username goes here</string>
+    <string name="AllActivitiesSetUsernameImage">small image button to bring you to the set username activity\n</string>
+    <string name="AllTasksImageHolder">image holder content description\n</string>
 </resources>

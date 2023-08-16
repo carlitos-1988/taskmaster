@@ -24,7 +24,7 @@
         android:id="@+id/MainActivityAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="16dp"
         android:text="@string/MainActivityAddTask"
@@ -49,10 +49,12 @@
         android:id="@+id/MainActivityTextView"
         android:layout_width="141dp"
         android:layout_height="46dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="214dp"
         android:text="@string/MainActivityMyTasks"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,10 +78,25 @@
         android:layout_marginTop="17dp"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="117dp"
+        android:contentDescription="@string/AllActivitiesSetUsernameImage"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MainActivityTextView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/MainActivityUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginBottom="11dp"
+        android:text="@string/UserNameTextView"
+        app:layout_constraintBottom_toTopOf="@+id/MainActivityTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
