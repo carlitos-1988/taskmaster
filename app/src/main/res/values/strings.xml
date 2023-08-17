@@ -116,4 +116,7 @@
     <string name="UserNameTextView">Username goes here</string>
     <string name="AllActivitiesSetUsernameImage">small image button to bring you to the set username activity\n</string>
     <string name="AllTasksImageHolder">image holder content description\n</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="blank_product_name">Blank product Name</string>
 </resources>
