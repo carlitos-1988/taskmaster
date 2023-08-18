@@ -35,20 +35,21 @@ public class CreateTask extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        Spinner taskCategorySpinner = (Spinner) findViewById(R.id.TaskSpinnerSelector);
+        Spinner taskCategorySpinner = findViewById(R.id.TaskSpinnerSelector);
 
         setupCategorySpinner(taskCategorySpinner);
-        addTask();
+        setupSaveButton(taskCategorySpinner);
+//        addTask();
     }
 
-    void addTask(){
-        Button addTaskButton = findViewById(R.id.CreateTaskActivitySubmitButton);
-
-        addTaskButton.setOnClickListener(v -> {
-            TextView myTextView = findViewById(R.id.CreateActivityTaskTitle);
-            myTextView.setText("Submitted");
-        });
-    }
+//    void addTask(){
+//        Button addTaskButton = findViewById(R.id.CreateTaskActivitySubmitButton);
+//
+//        addTaskButton.setOnClickListener(v -> {
+//            TextView myTextView = findViewById(R.id.CreateActivityTaskTitle);
+//            myTextView.setText("Submitted");
+//        });
+//    }
 
     void setupCategorySpinner(Spinner taskCategorySpinner){
 
