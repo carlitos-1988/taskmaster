@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<TaskClass>taskItems =  new ArrayList<>();
 
-    TaskDatabase taskDatabase;
+    public TaskDatabase taskDatabase;
     public static final String DATABASE_NAME = "juan_task_database";
 
     @Override
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-
+        taskDatabase.taskDatabaseDao().findAll();
     }
 
     void setupUsernameTextView(){

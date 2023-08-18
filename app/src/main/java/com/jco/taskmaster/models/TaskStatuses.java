@@ -2,10 +2,26 @@ package com.jco.taskmaster.models;
 
 public enum TaskStatuses {
 
-    STATUS_1("Started"),
-    STATUS_2("In_Progress"),
-    STATUS_3("Done");
+    STARTED("Started"),
+    IN_PROGRESS("In_Progress"),
+    DONE("Done");
 
-    TaskStatuses(String s) {
+    private String text;
+
+    TaskStatuses(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public static TaskStatuses fromString(String text){
+        for(TaskStatuses status : TaskStatuses.values()){
+            if(status.text.equals(text)){
+                return status;
+            }
+        }
+        return null;
     }
 }

@@ -17,9 +17,10 @@ public class Task {
     TaskStatuses status;
     java.util.Date dateCreated;
 
-    public Task(String taskName, String description, TaskStatuses status) {
+    public Task(String taskName, String description, Date dateCreated, TaskStatuses status) {
         this.taskName = taskName;
         this.description = description;
+        this.dateCreated = dateCreated;
         this.status = status;
     }
 
