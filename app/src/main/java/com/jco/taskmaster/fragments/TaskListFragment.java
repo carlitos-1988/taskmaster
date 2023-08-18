@@ -1,4 +1,4 @@
-package com.jco.taskmaster.activities.fragments;
+package com.jco.taskmaster.fragments;
 
 import android.os.Bundle;
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,7 +19,8 @@ import com.jco.taskmaster.activities.CreateTask;
 import com.jco.taskmaster.activities.SettingsPage;
 import com.jco.taskmaster.activities.TaskClass;
 import com.jco.taskmaster.activities.TaskDetailActivity;
-import com.jco.taskmaster.activities.adapters.TaskListRecyclerViewAdapter;
+import com.jco.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.jco.taskmaster.database.TaskDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     List<TaskClass>taskItems =  new ArrayList<>();
 
+    TaskDatabase taskDatabase;
+    public static final String DATABASE_NAME = "juan_task_database";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        setupDatabase();
         viewAllTasks();
         addTaskButton();
         viewTaskDetails();
         viewSettings();
-        // TODO: Task instances mist be created before we hand the products into the RecyclerView
+        // TODO: Task instances must be created before we hand the products into the RecyclerView
         createTaskInstance();
         setupRecyclerView();
 
@@ -53,8 +59,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-
         setupUsernameTextView();
+    }
+
+    void setupDatabase(){
+        taskDatabase = Room.databaseBuilder(
+                getApplicationContext(),
+                TaskDatabase.class,
+                DATABASE_NAME)
+                .fallbackToDestructiveMigration()//if room gets confused, it tosses your database; turn this off in production
+                .allowMainThreadQueries()
+                .build();
+
+
     }
 
     void setupUsernameTextView(){
@@ -112,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
     void setupRecyclerView(){
         // TODO: 1-2 Grab RecyclerView at the same time make sure it is called inside of the onCreateMethod
         RecyclerView taskListRecyclerView = (RecyclerView) findViewById(R.id.MainActivityTaskRecyclerView);
+
+        //TODO: 1-3: Set the layout manager for the RecyclerView to a linear Layout Manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         taskListRecyclerView.setLayoutManager(layoutManager);
@@ -120,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 //        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter();
 
         // TODO: 2-3: Hand data items from main Activity to our RecyclerViewAdapter
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(TaskClass);
+        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskItems, this);
         taskListRecyclerView.setAdapter(adapter);
 
         //After this step created fragments directory and created new fragment from new it comes with prebuilt code
@@ -131,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
     void createTaskInstance(){
 
         // TODO: Step 2-2  cont: fill list with data
-
         taskItems.add(new TaskClass("go to school", "Get Good Grades", TaskClass.TaskState.NEW));
         taskItems.add(new TaskClass("Take Medicine", "Take all vericonizole medicine", TaskClass.TaskState.NEW));
         taskItems.add(new TaskClass("Finish Homework", "Complete all math exercises", TaskClass.TaskState.NEW));
