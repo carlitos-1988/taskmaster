@@ -8,24 +8,30 @@
 
     <Button
         android:id="@+id/MainActivityAddTask"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="128dp"
         android:text="@string/MainActivityAddTask"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/AllActivitiesTaskDetailActivities"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MainActivityTaskRecyclerView" />
 
     <Button
         android:id="@+id/mainActivityAllTask"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="128dp"
         android:text="@string/MainActivityAllTasks"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/AllActivitiesTaskDetailActivities"
@@ -46,15 +52,22 @@
 
     <Button
         android:id="@+id/AllActivitiesTaskDetailActivities"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginEnd="36dp"
+        android:backgroundTint="#3E9327"
         android:text="@string/MainActivitiesViewDetailsButton"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:circularflow_radiusInDP="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/mainActivityAllTask"
         app:layout_constraintStart_toEndOf="@+id/MainActivityAddTask"
-        app:layout_constraintTop_toBottomOf="@+id/MainActivityTaskRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/MainActivityTaskRecyclerView"
+        app:layout_constraintVertical_bias="0.716" />
 
     <ImageButton
         android:id="@+id/SetUsernameActivityButton"
