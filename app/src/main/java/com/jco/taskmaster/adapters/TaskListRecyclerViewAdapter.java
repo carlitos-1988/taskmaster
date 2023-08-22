@@ -14,6 +14,7 @@ import com.jco.taskmaster.MainActivity;
 import com.jco.taskmaster.R;
 import com.jco.taskmaster.activities.TaskClass;
 import com.jco.taskmaster.activities.TaskDetailActivity;
+import com.jco.taskmaster.models.Task;
 
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter{
 
     //TODO: Step 2-3 cont: Create a Task List variable and constructor within the adapter
     //TODO: 3-2a cont Create a task list variable and constructor within the adapter
-    List<TaskClass> tasks;
+    List<Task> tasks;
     //TODO 3-2b: Create Contex variable and update constructor
     Context callingActivity;
 
     //TODO: 3-1 Refactor code so that it works with the custom Task model
-    public  TaskListRecyclerViewAdapter(List<TaskClass> tasks, Context context){
+    public  TaskListRecyclerViewAdapter(List<Task> tasks, Context context){
         this.tasks = tasks;
         this.callingActivity = context;
     }
@@ -46,14 +47,15 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         //TODO: Step 2-4: Bind data items to Fragments inside of ViewHolders
         TextView taskFragmentTextView = (TextView) holder.itemView.findViewById(R.id.taskFragmentTextView);
-        String itemFragmentText = (position+1)+ " " + tasks.get(position).getTitle();
+        String itemFragmentText = (position+1)+ " " + tasks.get(position).getTaskName()
+                + "\n" + tasks.get(position).getStatus();
         taskFragmentTextView.setText(itemFragmentText);
 
         //TODO: 3-3 Create onClick listener, make an intent inside of it with an extrato go to a new activity
         View productViewHolder = holder.itemView;
         productViewHolder.setOnClickListener(v->{
             Intent goToTaskDetailActivity = new Intent(callingActivity, TaskDetailActivity.class);
-            goToTaskDetailActivity.putExtra(MainActivity.TASK_TITLE_TAG, tasks.get(position).getTitle());
+            goToTaskDetailActivity.putExtra(MainActivity.TASK_TITLE_TAG, tasks.get(position).getTaskName());
             callingActivity.startActivity(goToTaskDetailActivity);
         });
     }

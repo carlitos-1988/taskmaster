@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jco.taskmaster.MainActivity;
@@ -58,7 +58,7 @@ public class CreateTask extends AppCompatActivity {
                 android.R.layout.simple_spinner_item,
                 TaskStatuses.values()
         ));
-    };
+    }
 
     void setupSaveButton(Spinner taskCategorySpinner){
         Button submitTaskButton = findViewById(R.id.CreateTaskActivitySubmitButton);
@@ -69,8 +69,10 @@ public class CreateTask extends AppCompatActivity {
                     ((EditText)findViewById(R.id.CreateActivityTaskDescriptionInput)).getText().toString(),
                     new Date(),
                     TaskStatuses.fromString(taskCategorySpinner.getSelectedItem().toString())
+
             );
 
+            //Log.d("Selected Status", "selected: "+ taskToSave.getStatus().toString());
             taskDatabase.taskDatabaseDao().insertATask(taskToSave);
             //Notify dataset changes for recycler view
             Snackbar.make(findViewById(R.id.AddTaskActivityPage), "Product Saved", Snackbar.LENGTH_SHORT).show();
