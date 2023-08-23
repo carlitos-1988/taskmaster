@@ -19,7 +19,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         setupTaskNameTextView();
     }
 
-    //TODO: Method from the TaskListRecyclerView sends intent to this page to display data of the task Clicked
+    //DONE: Method from the TaskListRecyclerView sends intent to this page to display data of the task Clicked
     void setupTaskNameTextView(){
         Intent callingIntent = getIntent();
         String taskNameString = null;
