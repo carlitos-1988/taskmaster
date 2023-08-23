@@ -3,7 +3,7 @@ package com.jco.taskmaster.models;
 public enum TaskStatuses {
 
     STARTED("Started"),
-    IN_PROGRESS("In_Progress"),
+    IN_PROGRESS("InProgress"),
     DONE("Done");
 
     private String text;

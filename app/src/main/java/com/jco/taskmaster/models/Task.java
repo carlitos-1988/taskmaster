@@ -2,15 +2,12 @@ package com.jco.taskmaster.models;
 // TODO: Create model subpackage and create new class for each of the items in the Recycler, also crete data class
 
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+
 
 import java.util.Date;
-@Entity
+
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
-        public long id;
     String taskName;
     String description;
 

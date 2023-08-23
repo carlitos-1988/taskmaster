@@ -10,7 +10,6 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +21,8 @@ import com.jco.taskmaster.activities.CreateTask;
 import com.jco.taskmaster.activities.SettingsPage;
 import com.jco.taskmaster.activities.TaskDetailActivity;
 import com.jco.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.jco.taskmaster.database.TaskDatabase;
 import com.jco.taskmaster.models.Task;
+import com.jco.taskmaster.models.TaskStatuses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
     List<Task>taskItems =  new ArrayList<>();
-    TaskListRecyclerViewAdapter adapter;
 
-    public TaskDatabase taskDatabase;
     public static final String DATABASE_NAME = "juan_task_database";
 
     @Override
@@ -47,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         setupDatabase();
         viewAllTasks();
@@ -68,15 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void setupDatabase(){
-        taskDatabase = Room.databaseBuilder(
-                getApplicationContext(),
-                TaskDatabase.class,
-                DATABASE_NAME)
-                .fallbackToDestructiveMigration()//if room gets confused, it tosses your database; turn this off in production
-                .allowMainThreadQueries()
-                .build();
 
-        taskItems = taskDatabase.taskDatabaseDao().findAll();
     }
 
     void setupUsernameTextView(){
@@ -152,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // TODO: Step 1-5: Create and attach RecyclerView.Adapter to RecyclerView
-//        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter();
+        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskItems, this);
 
         // TODO: 2-3: Hand data items from main Activity to our RecyclerViewAdapter
         adapter = new TaskListRecyclerViewAdapter(taskItems, this);
@@ -164,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
     void updateTasksFromDatabase(){
 
-        taskItems.clear();
-        taskItems.addAll(taskDatabase.taskDatabaseDao().findAll());
-        adapter.notifyDataSetChanged();//tells recycler view that there is data and to update it
+//        taskItems.clear();
+//        taskItems.addAll(taskDatabase.taskDatabaseDao().findAll());
+//        adapter.notifyDataSetChanged();//tells recycler view that there is data and to update it
 
 
     }
