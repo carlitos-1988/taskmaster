@@ -11,18 +11,23 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.jco.taskmaster.activities.AllTasks;
 import com.jco.taskmaster.activities.CreateTask;
 import com.jco.taskmaster.activities.SettingsPage;
 import com.jco.taskmaster.activities.TaskDetailActivity;
 import com.jco.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.jco.taskmaster.models.Task;
-import com.jco.taskmaster.models.TaskStatuses;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String USERNAME_SET = "definedUserName";
     public static final String TASK_TITLE_TAG = "taskTitle";
     SharedPreferences preferences;
+    TaskListRecyclerViewAdapter adapter;
 
     List<Task>taskItems =  new ArrayList<>();
 
@@ -54,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Task instances must be created before we hand the products into the RecyclerView
 //        createTaskInstance();
         setupRecyclerView();
+        queryForAWSDatabase();
+        //akeTeamInstances();
+
 
     }
 
@@ -61,8 +70,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
+        queryForAWSDatabase();
         setupUsernameTextView();
         updateTasksFromDatabase();
+    }
+
+    void queryForAWSDatabase(){
+        //TODO: Make a Dynamo DB/GraphQL call
+
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                success -> {
+                    Log.i(TAG, "Read products successfully");
+                    taskItems.clear();
+                    for (Task task: success.getData()){
+                        taskItems.add(task);
+                    }
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                            });
+                },
+                failure -> Log.i(TAG, "did not read products successfully")
+        );
     }
 
     void setupDatabase(){
@@ -142,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // TODO: Step 1-5: Create and attach RecyclerView.Adapter to RecyclerView
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskItems, this);
+//        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskItems, this);
 
         // TODO: 2-3: Hand data items from main Activity to our RecyclerViewAdapter
         adapter = new TaskListRecyclerViewAdapter(taskItems, this);
@@ -159,6 +188,19 @@ public class MainActivity extends AppCompatActivity {
 //        adapter.notifyDataSetChanged();//tells recycler view that there is data and to update it
 
 
+    }
+
+    void makeTeamInstances(){
+
+
+        Team team2 = Team.builder()
+                .name("La Onda")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(team2),
+                successResponse -> Log.i(TAG, "Main Activity CreatedContactInstances() made a contact successfully"),
+                failureResponse -> Log.i(TAG, "Main Activity CreatedContactInstances() FAILED"+ failureResponse)
+        );
     }
 
 
