@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
+
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TaskListRecyclerViewAdapter adapter;
 
     List<Task>taskItems =  new ArrayList<>();
-
-    public static final String DATABASE_NAME = "juan_task_database";
+    List<Team> teams = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +85,23 @@ public class MainActivity extends AppCompatActivity {
                     for (Task task: success.getData()){
                         taskItems.add(task);
                     }
-                    runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
-                            });
+                    runOnUiThread(() -> adapter.notifyDataSetChanged());
                 },
                 failure -> Log.i(TAG, "did not read products successfully")
         );
+
+//        Amplify.API.query(
+//                ModelQuery.list(Team.class),
+//                success -> {
+//                    Log.i(TAG, "Read products successfully");
+//                    taskItems.clear();
+//                    for (Team team: success.getData()){
+//                        teams.add(team);
+//                    }
+//                    runOnUiThread(() -> adapter.notifyDataSetChanged());
+//                },
+//                failure -> Log.i(TAG, "did not read products successfully")
+//        );
     }
 
     void setupDatabase(){
@@ -181,47 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void updateTasksFromDatabase(){
-
-//        taskItems.clear();
-//        taskItems.addAll(taskDatabase.taskDatabaseDao().findAll());
-//        adapter.notifyDataSetChanged();//tells recycler view that there is data and to update it
-
+    void updateTasksFromDatabase() {
 
     }
-
-    void makeTeamInstances(){
-
-
-        Team team2 = Team.builder()
-                .name("La Onda")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(team2),
-                successResponse -> Log.i(TAG, "Main Activity CreatedContactInstances() made a contact successfully"),
-                failureResponse -> Log.i(TAG, "Main Activity CreatedContactInstances() FAILED"+ failureResponse)
-        );
-    }
-
-
-
-//    void createTaskInstance(){
-//
-//        // TODO: Step 2-2  cont: fill list with data
-//        taskItems.add(new Task("go to school", "Get Good Grades", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Take Medicine", "Take all medicine", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Finish Homework", "Complete all math exercises", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Buy Groceries", "Purchase fruits, vegetables, and bread", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Call Mom", "Give Mom a call to catch up", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Write Blog Post", "Compose an article about technology trends", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Go for a Run", "Run for 30 minutes in the park", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Clean the Garage", "Organize tools and clear clutter", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Prepare Presentation", "Gather data and create slides for meeting", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Read a Book", "Read the first three chapters of 'The Great Novel'", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Plan Weekend Trip", "Research destinations and make travel itinerary", TaskClass.TaskState.NEW));
-//        taskItems.add(new Task("Practice Guitar", "Play scales and learn a new chord progression", TaskClass.TaskState.NEW));
-//
-//    }
-
-
 }

@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.jco.taskmaster.MainActivity;
 import com.jco.taskmaster.R;
-import com.jco.taskmaster.activities.TaskClass;
 import com.jco.taskmaster.activities.TaskDetailActivity;
 
 
@@ -31,7 +31,8 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter{
     //TODO: Step 2-3 cont: Create a Task List variable and constructor within the adapter
     //TODO: 3-2a cont Create a task list variable and constructor within the adapter
     List<Task> tasks;
-    //TODO 3-2b: Create Contex variable and update constructor
+    List<Team> teams;
+    //TODO 3-2b: Create Context variable and update constructor
     Context callingActivity;
 
     //TODO: 3-1 Refactor code so that it works with the custom Task model
@@ -58,11 +59,12 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter{
         String itemFragmentText =
                 (position+1)+ " " + tasks.get(position).getTaskName()
                 + "\n"+ tasks.get(position).getDescription()
+                        + "\n"+ tasks.get(position).getContactTeam().getName()
                 + "\n" + dateString;
 
         taskFragmentTextView.setText(itemFragmentText);
 
-        //TODO: 3-3 Create onClick listener, make an intent inside of it with an extrato go to a new activity
+        //TODO: 3-3 Create onClick listener, make an intent inside of it with an extract to go to a new activity
         View productViewHolder = holder.itemView;
         productViewHolder.setOnClickListener(v->{
             Intent goToTaskDetailActivity = new Intent(callingActivity, TaskDetailActivity.class);
@@ -74,7 +76,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter{
     private String formatDateString(Task task) {
         DateFormat dateCreatedIso8601InputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         dateCreatedIso8601InputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        DateFormat dateCreatedOutputFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        DateFormat dateCreatedOutputFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.US);
         dateCreatedOutputFormat.setTimeZone(TimeZone.getDefault());
         String dateCreatedString = "";
 
