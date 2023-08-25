@@ -14,7 +14,7 @@ import com.jco.taskmaster.R;
 
 public class SettingsPage extends AppCompatActivity {
 
-    public static final String USERNAME_SET = "definedUserName";
+    public static final String USERNAME_SET = "";
     SharedPreferences preferences;
 
     @Override

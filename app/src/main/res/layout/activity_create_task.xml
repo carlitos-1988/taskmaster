@@ -45,7 +45,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/CreateActivityTaskDescriptionInput"
         android:layout_width="270dp"
         android:layout_height="50dp"

@@ -103,10 +103,10 @@ public class CreateTask extends AppCompatActivity {
             try{
                 teams = teamFuture.get();
             } catch (InterruptedException ie){
-                Log.e(TAG, "Interupted exception while getting contacts");
+                Log.e(TAG, "Interrupted exception while getting contacts");
                 Thread.currentThread().interrupt();
             }catch (ExecutionException ee){
-                Log.e(TAG, "Execution exeption while getting contacts");
+                Log.e(TAG, "Execution exception while getting contacts");
             }
 
             assert teams != null;
