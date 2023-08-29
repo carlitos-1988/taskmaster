@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,10 +16,9 @@ import android.widget.TextView;
 import com.jco.taskmaster.activities.AllTasks;
 import com.jco.taskmaster.activities.CreateTask;
 import com.jco.taskmaster.activities.SettingsPage;
-import com.jco.taskmaster.activities.TaskClass;
+import com.jco.taskmaster.models.TaskClass;
 import com.jco.taskmaster.activities.TaskDetailActivity;
 import com.jco.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.jco.taskmaster.database.TaskDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<TaskClass>taskItems =  new ArrayList<>();
 
-    public TaskDatabase taskDatabase;
+
     public static final String DATABASE_NAME = "juan_task_database";
 
     @Override
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        setupDatabase();
+
         viewAllTasks();
         addTaskButton();
         viewTaskDetails();
@@ -62,17 +60,8 @@ public class MainActivity extends AppCompatActivity {
         setupUsernameTextView();
     }
 
-    void setupDatabase(){
-        taskDatabase = Room.databaseBuilder(
-                getApplicationContext(),
-                TaskDatabase.class,
-                DATABASE_NAME)
-                .fallbackToDestructiveMigration()//if room gets confused, it tosses your database; turn this off in production
-                .allowMainThreadQueries()
-                .build();
+    //TODO: 21Aug Need update List method here
 
-        taskDatabase.taskDatabaseDao().findAll();
-    }
 
     void setupUsernameTextView(){
         String username = preferences.getString(USERNAME_SET, "No Username");
@@ -128,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     //recycler view
     void setupRecyclerView(){
         // TODO: 1-2 Grab RecyclerView at the same time make sure it is called inside of the onCreateMethod
-        RecyclerView taskListRecyclerView = (RecyclerView) findViewById(R.id.MainActivityTaskRecyclerView);
+        RecyclerView taskListRecyclerView = findViewById(R.id.MainActivityTaskRecyclerView);
 
         //TODO: 1-3: Set the layout manager for the RecyclerView to a linear Layout Manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -151,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: Step 2-2  cont: fill list with data
         taskItems.add(new TaskClass("go to school", "Get Good Grades", TaskClass.TaskState.NEW));
-        taskItems.add(new TaskClass("Take Medicine", "Take all vericonizole medicine", TaskClass.TaskState.NEW));
+        taskItems.add(new TaskClass("Take Medicine", "Take all medicine", TaskClass.TaskState.NEW));
         taskItems.add(new TaskClass("Finish Homework", "Complete all math exercises", TaskClass.TaskState.NEW));
         taskItems.add(new TaskClass("Buy Groceries", "Purchase fruits, vegetables, and bread", TaskClass.TaskState.NEW));
         taskItems.add(new TaskClass("Call Mom", "Give Mom a call to catch up", TaskClass.TaskState.NEW));

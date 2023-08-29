@@ -1,4 +1,4 @@
-package com.jco.taskmaster.activities;
+package com.jco.taskmaster.models;
 
 import android.view.ViewGroup;
 
