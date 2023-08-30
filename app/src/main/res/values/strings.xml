@@ -122,4 +122,12 @@
     <string name="input_descriptions">Enter Task Description</string>
     <string name="select_team">Select Team</string>
     <string name="team_contact_select">team select</string>
+    <string name="sign_up">sign up</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="submit">submit</string>
+    <string name="verify_account">Verify Account</string>
+    <string name="verification_number">Verification Number</string>
+    <string name="login">Login</string>
+    <string name="logout">logout</string>
 </resources>
