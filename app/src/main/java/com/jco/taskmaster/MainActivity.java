@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.nfc.Tag;
 import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,10 @@ import android.widget.TextView;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.result.AWSCognitoAuthSignOutResult;
+import com.amplifyframework.auth.options.AuthSignOutOptions;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -47,6 +52,50 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Amplify.Auth.signUp("juan.c.olmedo@icloud.com",
+//                "P@ssword123!",
+//                AuthSignUpOptions.builder()
+//                        .userAttribute(AuthUserAttributeKey.email(), "juan.c.olmedo@icloud.com")
+//                        .userAttribute(AuthUserAttributeKey.nickname(), "Hwan")
+//                        .build(),
+//                        successResponse -> Log.i(TAG, "Signup succeeded: " + successResponse.toString()),
+//                        failureResponse -> Log.i(TAG, "signup Failed: with username " + failureResponse.toString() )
+//                );
+
+//        Amplify.Auth.confirmSignUp("juan.c.olmedo@icloud.com",
+//                "455619",
+//                success -> {
+//                        Log.i(TAG, "Verification succeeded");
+//                        },
+//                failure -> {
+//                        Log.i(TAG, "Verification failed"+ failure.toString());
+//        });
+
+//        Amplify.Auth.signIn("juan.c.olmedo@icloud.com",
+//                "P@ssword123!",
+//                success -> Log.i(TAG, "Login Succeeded"+ success.toString()),
+//                failure -> Log.i(TAG, "Login Failed" + failure.toString())
+//                );
+
+
+        //Sign out Section
+//        AuthSignOutOptions signOutOptions = AuthSignOutOptions.builder()
+//                        .globalSignOut(true)
+//                                .build();
+//
+//        Amplify.Auth.signOut(signOutOptions,
+//                signOutResult -> {
+//                    if(signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut){
+//                        Log.i(TAG, "Global signout successful");
+//                    } else if (signOutResult instanceof  AWSCognitoAuthSignOutResult.PartialSignOut){
+//                        Log.i(TAG, " Partial sign out successful ");
+//
+//                    } else if ( signOutResult instanceof  AWSCognitoAuthSignOutResult.FailedSignOut) {
+//                        Log.i(TAG, "Logout Failed" + signOutResult.toString());
+//                    }
+//                }
+//        );
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
