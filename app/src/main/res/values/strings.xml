@@ -130,4 +130,6 @@
     <string name="verification_number">Verification Number</string>
     <string name="login">Login</string>
     <string name="logout">logout</string>
+    <string name="add_product_image">add product image</string>
+    <string name="Task_image">task image</string>
 </resources>

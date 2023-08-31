@@ -18,6 +18,7 @@ type Task @model @auth(rules: [{allow:public}]){
   taskCategory: TaskCategoryEnum
   teamID: ID! @index(name: "byTeam", sortKeyFields: ["taskName"])
   contactTeam: Team @belongsTo(fields:["teamID"])
+  taskImageS3Key: String
 
 
 }

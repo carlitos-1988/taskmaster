@@ -29,6 +29,8 @@
         android:layout_marginTop="33dp"
         android:hint="@string/CreateActivityTaskInputHint"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CreateActivityTaskTitle" />
 
@@ -40,6 +42,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="97dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CreateActivityTaskTitleInput">
 
@@ -54,6 +57,8 @@
         android:backgroundTint="#C0D0F1"
         android:hint="@string/CreateActivityTaskDescriptionLabel"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CreateActivityTaskDescriptionLabel" />
 
@@ -62,13 +67,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="141dp"
-        android:layout_marginTop="94dp"
         android:layout_marginEnd="157dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/CreateTaskActivityButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_contact_select" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/TaskSpinnerSelector"
@@ -94,4 +99,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TaskSpinnerSelector" />
+
+    <ImageView
+        android:id="@+id/AddProductActivityProductImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="77dp"
+        android:contentDescription="@string/add_product_image"
+        app:layout_constraintBottom_toTopOf="@+id/CreateTaskActivitySubmitButton"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_contact_select"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_launcher_background" />
 </androidx.constraintlayout.widget.ConstraintLayout>

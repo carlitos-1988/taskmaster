@@ -17,6 +17,9 @@
       },
       "auth": {
         "taskmasterc41999af": {}
+      },
+      "storage": {
+        "taskstorage": {}
       }
     }
   }
