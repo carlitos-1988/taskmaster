@@ -34,6 +34,10 @@ import com.jco.taskmaster.activities.TaskDetailActivity;
 import com.jco.taskmaster.adapters.TaskListRecyclerViewAdapter;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,75 +46,30 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     public static final String USERNAME_SET = "definedUserName";
     public static final String TASK_TITLE_TAG = "taskTitle";
-    SharedPreferences preferences;
-    TaskListRecyclerViewAdapter adapter;
+    public static final String PRODUCT_ID_EXTRA_TAG = "productId";
+
+
 
     List<Task>taskItems =  new ArrayList<>();
     List<Team> teams = new ArrayList<>();
+
+    SharedPreferences preferences;
+    TaskListRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Amplify.Auth.signUp("juan.c.olmedo@icloud.com",
-//                "P@ssword123!",
-//                AuthSignUpOptions.builder()
-//                        .userAttribute(AuthUserAttributeKey.email(), "juan.c.olmedo@icloud.com")
-//                        .userAttribute(AuthUserAttributeKey.nickname(), "Hwan")
-//                        .build(),
-//                        successResponse -> Log.i(TAG, "Signup succeeded: " + successResponse.toString()),
-//                        failureResponse -> Log.i(TAG, "signup Failed: with username " + failureResponse.toString() )
-//                );
-
-//        Amplify.Auth.confirmSignUp("juan.c.olmedo@icloud.com",
-//                "455619",
-//                success -> {
-//                        Log.i(TAG, "Verification succeeded");
-//                        },
-//                failure -> {
-//                        Log.i(TAG, "Verification failed"+ failure.toString());
-//        });
-
-//        Amplify.Auth.signIn("juan.c.olmedo@icloud.com",
-//                "P@ssword123!",
-//                success -> Log.i(TAG, "Login Succeeded"+ success.toString()),
-//                failure -> Log.i(TAG, "Login Failed" + failure.toString())
-//                );
-
-
-        //Sign out Section
-//        AuthSignOutOptions signOutOptions = AuthSignOutOptions.builder()
-//                        .globalSignOut(true)
-//                                .build();
-//
-//        Amplify.Auth.signOut(signOutOptions,
-//                signOutResult -> {
-//                    if(signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut){
-//                        Log.i(TAG, "Global signout successful");
-//                    } else if (signOutResult instanceof  AWSCognitoAuthSignOutResult.PartialSignOut){
-//                        Log.i(TAG, " Partial sign out successful ");
-//
-//                    } else if ( signOutResult instanceof  AWSCognitoAuthSignOutResult.FailedSignOut) {
-//                        Log.i(TAG, "Logout Failed" + signOutResult.toString());
-//                    }
-//                }
-//        );
-
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-
-        setupDatabase();
         viewAllTasks();
         addTaskButton();
         viewTaskDetails();
         viewSettings();
-        // TODO: Task instances must be created before we hand the products into the RecyclerView
-//        createTaskInstance();
+
         setupRecyclerView();
         queryForAWSDatabase();
-        //akeTeamInstances();
-
 
     }
 
@@ -120,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         queryForAWSDatabase();
         setupUsernameTextView();
-        updateTasksFromDatabase();
+        //updateTasksFromDatabase();
     }
 
     void queryForAWSDatabase(){
@@ -241,6 +200,84 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void updateTasksFromDatabase() {
+    }
 
+    void manualS3FileUpload(){
+        String testFileName = "Test_File_Name";
+        File testUploadFile = new File(getApplicationContext().getFilesDir(), testFileName);
+
+        try{
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(testUploadFile));
+            bufferedWriter.append("Some random new text for AWS \n this should be another line");
+            bufferedWriter.close();
+
+        }catch (IOException e) {
+            Log.e(TAG, "could not write file locally with name: "+ testFileName);
+        }
+
+        String testFileKey = "SomeFile.txt";
+
+        Amplify.Storage.uploadFile(
+                testFileKey,
+                testUploadFile,
+                success -> {
+                    Log.i(TAG, "S3 uploaded successfully! key is: " + success.getKey());
+                },
+                failure ->{
+                    Log.i(TAG, "S3 upload did not work " + failure.getMessage());
+                }
+        );
     }
 }
+
+
+
+//        Amplify.Auth.signUp("juan.c.olmedo@icloud.com",
+//                "P@ssword123!",
+//                AuthSignUpOptions.builder()
+//                        .userAttribute(AuthUserAttributeKey.email(), "juan.c.olmedo@icloud.com")
+//                        .userAttribute(AuthUserAttributeKey.nickname(), "Hwan")
+//                        .build(),
+//                        successResponse -> Log.i(TAG, "Signup succeeded: " + successResponse.toString()),
+//                        failureResponse -> Log.i(TAG, "signup Failed: with username " + failureResponse.toString() )
+//                );
+
+//        Amplify.Auth.confirmSignUp("juan.c.olmedo@icloud.com",
+//                "455619",
+//                success -> {
+//                        Log.i(TAG, "Verification succeeded");
+//                        },
+//                failure -> {
+//                        Log.i(TAG, "Verification failed"+ failure.toString());
+//        });
+
+//        Amplify.Auth.signIn("juan.c.olmedo@icloud.com",
+//                "P@ssword123!",
+//                success -> Log.i(TAG, "Login Succeeded"+ success.toString()),
+//                failure -> Log.i(TAG, "Login Failed" + failure.toString())
+//                );
+
+
+//Sign out Section
+//        AuthSignOutOptions signOutOptions = AuthSignOutOptions.builder()
+//                        .globalSignOut(true)
+//                                .build();
+//
+//        Amplify.Auth.signOut(signOutOptions,
+//                signOutResult -> {
+//                    if(signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut){
+//                        Log.i(TAG, "Global signout successful");
+//                    } else if (signOutResult instanceof  AWSCognitoAuthSignOutResult.PartialSignOut){
+//                        Log.i(TAG, " Partial sign out successful ");
+//
+//                    } else if ( signOutResult instanceof  AWSCognitoAuthSignOutResult.FailedSignOut) {
+//                        Log.i(TAG, "Logout Failed" + signOutResult.toString());
+//                    }
+//                }
+//        );
+
+// TODO: Task instances must be created before we hand the products into the RecyclerView
+
+//        makeTeamInstances();
+//        manualS3FileUpload();
+//        createTaskInstance();
